@@ -17,9 +17,8 @@ contribs=contribs[:-38]
 
 max_contribs={}
 for item in soup.findAll("rect",{"class":"day"}):
-    max=int(item.get("data-count"))
     date=item.get("data-date")
-    max_contribs[date]=max
+    max_contribs[date]=int(item.get("data-count"))
 max_contribs=sorted(max_contribs.items(),key=operator.itemgetter(1),reverse=True)
 max_num=max_contribs[0][1:]
 max_date=max_contribs[0][:1]
