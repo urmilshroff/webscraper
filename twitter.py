@@ -33,6 +33,8 @@ try:
     print("Number of following: {}".format(count[1]))
     print("Number of followers: {}".format(count[2]))
     print("Number of likes: {}".format(count[3]))
+    print("Number of lists: {}".format(count[4]))
+    print("Number of moments: {}".format(count[5]))
 except IndexError:
     print("Error: missing or broken info!")
 
