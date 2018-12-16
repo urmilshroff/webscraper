@@ -10,13 +10,13 @@ rupee=float(rate[0].text)
 
 print("Today's rate: $1 = ₹{}".format(rupee))
 
-choice=int(input("What do you want to convert?\n1. Dollars to Rupees\n2. Rupees to Dollars\n"))
+choice=int(input("\nWhat do you want to convert?\n1. Dollars to Rupees\n2. Rupees to Dollars\n"))
 
 if(choice==1):
     amount=int(input("Enter amount in USD:\n"))
     print("Today's conversion: ${} = ₹{} (approx.)".format(amount,round(amount*rupee)))
     
-if(choice==2):
+elif(choice==2):
     amount=int(input("Enter amount in INR:\n"))
     print("Today's conversion: ₹{} = ${} (approx.)".format(amount,round(amount/rupee)))
     
