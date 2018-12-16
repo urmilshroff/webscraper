@@ -8,7 +8,17 @@ soup=bs4.BeautifulSoup(res.text,"lxml")
 rate=soup.select(".item-page p strong")
 rupee=float(rate[0].text)
 
-print("Today's value: $1 = ₹{}".format(rupee))
+print("Today's rate: $1 = ₹{}".format(rupee))
 
-dollar=int(input("Enter amount in USD:\n"))
-print("Your conversion: ${} = ₹{}".format(dollar,round(dollar*rupee)))
+choice=int(input("What do you want to convert?\n1. Dollars to Rupees\n2. Rupees to Dollars\n"))
+
+if(choice==1):
+    amount=int(input("Enter amount in USD:\n"))
+    print("Today's conversion: ${} = ₹{} (approx.)".format(amount,round(amount*rupee)))
+    
+if(choice==2):
+    amount=int(input("Enter amount in INR:\n"))
+    print("Today's conversion: ₹{} = ${} (approx.)".format(amount,round(amount/rupee)))
+    
+else:
+    print("Bad choice!")
