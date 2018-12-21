@@ -2,35 +2,37 @@ import bs4
 import requests
 import operator
 
-user_id=input("Enter the username of the GitHub profile:\n")
-user_link="https://github.com/"+user_id
+user_id = input("Enter the username of the GitHub profile:\n")
+user_link = "https://github.com/" + user_id
 
-res=requests.get(user_link)
-soup=bs4.BeautifulSoup(res.text,"lxml")
+res = requests.get(user_link)
+soup = bs4.BeautifulSoup(res.text, "lxml")
 
-name=soup.select(".p-name.vcard-fullname.d-block.overflow-hidden")
-count=soup.select(".Counter")
+name = soup.select(".p-name.vcard-fullname.d-block.overflow-hidden")
+count = soup.select(".Counter")
 
 try:
-    contribs=soup.select(".f4.text-normal.mb-2")
-    contribs=contribs[1].text
-    contribs=contribs[:-38]
+    contribs = soup.select(".f4.text-normal.mb-2")
+    contribs = contribs[1].text
+    contribs = contribs[:-38]
 except IndexError:
     print("Error: missing or broken info!")
 
 try:
-    max_contribs={}
-    for item in soup.findAll("rect",{"class":"day"}):
-        date=item.get("data-date")
-        max_contribs[date]=int(item.get("data-count"))
-    max_contribs=sorted(max_contribs.items(),key=operator.itemgetter(1),reverse=True)
-    max_num=max_contribs[0][1:]
-    max_date=max_contribs[0][:1]
+    max_contribs = {}
+    for item in soup.findAll("rect", {"class": "day"}):
+        date = item.get("data-date")
+        max_contribs[date] = int(item.get("data-count"))
+    max_contribs = sorted(max_contribs.items(),
+                          key=operator.itemgetter(1), reverse=True)
+    max_num = max_contribs[0][1:]
+    max_date = max_contribs[0][:1]
 except IndexError:
     print("Error: missing or broken info!")
 
 try:
-    print("\nSummary for GitHub user {} (aka {}):".format(user_id,name[0].text))
+    print("\nSummary for GitHub user {} (aka {}):".format(
+        user_id, name[0].text))
 except IndexError:
     print("Error: missing or broken info!")
 
