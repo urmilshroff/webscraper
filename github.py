@@ -38,9 +38,10 @@ except IndexError:
 
 try:
     print("\nNumber of repositories: {}".format(count[0].text.strip()))
-    print("Number of starred items: {}".format(count[1].text.strip()))
-    print("Number of followers: {}".format(count[2].text.strip()))
-    print("Number of following: {}".format(count[3].text.strip()))
+    print("Number of projects: {}".format(count[1].text.strip()))
+    print("Number of starred items: {}".format(count[2].text.strip()))
+    print("Number of followers: {}".format(count[3].text.strip()))
+    print("Number of following: {}".format(count[4].text.strip()))
 except IndexError:
     print("Error: missing or broken info!")
 
