@@ -1,9 +1,13 @@
 import bs4
 import requests
 import operator
+from halo import Halo
 
 user_id = input("Enter the username of the GitHub profile:\n")
 user_link = "https://github.com/" + user_id
+
+spinner = Halo(text="Scraping info...", spinner="dots")
+spinner.start()
 
 res = requests.get(user_link)
 soup = bs4.BeautifulSoup(res.text, "lxml")
@@ -29,6 +33,8 @@ try:
     max_date = max_contribs[0][:1]
 except IndexError:
     print("Error: missing or broken info!")
+
+spinner.stop()
 
 try:
     print("\nSummary for GitHub user {} (aka {}):".format(
